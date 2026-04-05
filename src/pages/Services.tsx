@@ -62,6 +62,7 @@ const processSteps = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
   return (
     <main className="pt-20">
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
