@@ -82,7 +82,8 @@ const Services = () => {
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
-                className="p-6 rounded-2xl border border-border bg-card hover:border-primary/30 hover:glow-shadow transition-all duration-300"
+                className="p-6 rounded-2xl border border-border bg-card hover:border-primary/30 hover:glow-shadow transition-all duration-300 cursor-pointer"
+                onClick={() => navigate(`/services/${service.slug}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
