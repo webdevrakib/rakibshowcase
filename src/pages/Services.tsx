@@ -1,6 +1,6 @@
 import SectionHeading from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Globe, Smartphone, Palette, Search, Server, Code2, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -13,36 +13,42 @@ const services = [
   {
     icon: Globe,
     title: "Web Development",
+    slug: "web-development",
     desc: "Custom websites and web applications built with React, Next.js, and modern frameworks. Optimized for speed and SEO.",
     benefits: ["Lightning-fast performance", "SEO optimized", "Mobile responsive", "Scalable architecture"],
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
+    slug: "mobile-apps",
     desc: "Cross-platform mobile apps with React Native that feel native on both iOS and Android.",
     benefits: ["Cross-platform", "Native performance", "Push notifications", "Offline capability"],
   },
   {
     icon: Palette,
     title: "UI/UX Design",
+    slug: "ui-ux-design",
     desc: "User-centered interface designs that convert visitors into customers with intuitive flows.",
     benefits: ["Conversion focused", "User research driven", "Accessibility compliant", "Brand consistent"],
   },
   {
     icon: Search,
     title: "SEO Optimization",
+    slug: "seo-optimization",
     desc: "Data-driven SEO strategies that boost your search rankings and organic traffic.",
     benefits: ["Technical SEO", "Content strategy", "Performance optimization", "Analytics setup"],
   },
   {
     icon: Server,
     title: "API Development",
+    slug: "api-development",
     desc: "Robust backend APIs with Node.js, Express, and PostgreSQL for your business logic.",
     benefits: ["RESTful & GraphQL", "Secure authentication", "Rate limiting", "Documentation"],
   },
   {
     icon: Code2,
     title: "Full-Stack Solutions",
+    slug: "full-stack-solutions",
     desc: "End-to-end development from database design to deployment and maintenance.",
     benefits: ["Complete ownership", "CI/CD pipelines", "Cloud deployment", "Ongoing support"],
   },
@@ -56,6 +62,7 @@ const processSteps = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
   return (
     <main className="pt-20">
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
@@ -75,7 +82,8 @@ const Services = () => {
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
-                className="p-6 rounded-2xl border border-border bg-card hover:border-primary/30 hover:glow-shadow transition-all duration-300"
+                className="p-6 rounded-2xl border border-border bg-card hover:border-primary/30 hover:glow-shadow transition-all duration-300 cursor-pointer"
+                onClick={() => navigate(`/services/${service.slug}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"

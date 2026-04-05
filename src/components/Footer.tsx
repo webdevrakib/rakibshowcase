@@ -45,8 +45,20 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Services</h4>
             <div className="flex flex-col gap-3">
-              {["Web Development", "Mobile Apps", "UI/UX Design", "SEO Optimization", "API Development"].map((s) => (
-                <span key={s} className="text-sm text-muted-foreground">{s}</span>
+              {[
+                { label: "Web Development", slug: "web-development" },
+                { label: "Mobile Apps", slug: "mobile-apps" },
+                { label: "UI/UX Design", slug: "ui-ux-design" },
+                { label: "SEO Optimization", slug: "seo-optimization" },
+                { label: "API Development", slug: "api-development" },
+              ].map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/services/${s.slug}`}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {s.label}
+                </Link>
               ))}
             </div>
           </div>
