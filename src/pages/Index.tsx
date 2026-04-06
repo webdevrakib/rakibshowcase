@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Code2, Smartphone, Globe, Palette, Search, Server, ChevronRight, Star, Quote } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
@@ -21,10 +21,10 @@ const services = [
 ];
 
 const projects = [
-  { title: "E-Commerce Platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
-  { title: "Fitness Tracker App", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
-  { title: "SaaS Dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
-  { title: "Restaurant Booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
+  { title: "E-Commerce Platform", slug: "e-commerce-platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
+  { title: "Fitness Tracker App", slug: "fitness-tracker-app", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
+  { title: "SaaS Dashboard", slug: "saas-dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
+  { title: "Restaurant Booking", slug: "restaurant-booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
 ];
 
 const testimonials = [
@@ -48,6 +48,7 @@ const fadeUp = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
   return (
     <main>
       {/* Hero */}
@@ -171,7 +172,8 @@ const Index = () => {
             {projects.map((project, i) => (
               <motion.div
                 key={project.title}
-                className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:elevated-shadow transition-all duration-300"
+                className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:elevated-shadow transition-all duration-300 cursor-pointer"
+                onClick={() => navigate(`/portfolio/${project.slug}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
