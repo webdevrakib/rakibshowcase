@@ -17,7 +17,8 @@ const fadeUp = {
 
 const Portfolio = () => {
   const [active, setActive] = useState("All");
-  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
+  const navigate = useNavigate();
+  const filtered = active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
 
   return (
     <main className="pt-20">
