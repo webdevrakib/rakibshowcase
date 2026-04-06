@@ -172,7 +172,8 @@ const Index = () => {
             {projects.map((project, i) => (
               <motion.div
                 key={project.title}
-                className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:elevated-shadow transition-all duration-300"
+                className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:elevated-shadow transition-all duration-300 cursor-pointer"
+                onClick={() => navigate(`/portfolio/${project.slug}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
