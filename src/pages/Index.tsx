@@ -21,10 +21,10 @@ const services = [
 ];
 
 const projects = [
-  { title: "E-Commerce Platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
-  { title: "Fitness Tracker App", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
-  { title: "SaaS Dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
-  { title: "Restaurant Booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
+  { title: "E-Commerce Platform", slug: "e-commerce-platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
+  { title: "Fitness Tracker App", slug: "fitness-tracker-app", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
+  { title: "SaaS Dashboard", slug: "saas-dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
+  { title: "Restaurant Booking", slug: "restaurant-booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
 ];
 
 const testimonials = [
