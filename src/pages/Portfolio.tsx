@@ -8,16 +8,7 @@ import { getAllProjects } from "@/data/projectData";
 
 const categories = ["All", "Web", "App", "UI/UX"];
 
-const projects = [
-  { title: "E-Commerce Platform", category: "Web", tech: ["React", "Node.js", "MongoDB", "Stripe"], desc: "Full-featured online store with real-time inventory management, payment processing, and admin dashboard.", image: null },
-  { title: "Fitness Tracker App", category: "App", tech: ["React Native", "Firebase", "Redux"], desc: "Cross-platform mobile app with workout tracking, health analytics, and social features.", image: null },
-  { title: "SaaS Dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL", "Chart.js"], desc: "Real-time analytics dashboard with data visualization, user management, and reporting tools.", image: null },
-  { title: "Restaurant Booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management, push notifications, and review system.", image: null },
-  { title: "Social Media App", category: "App", tech: ["React Native", "GraphQL", "AWS"], desc: "Feature-rich social platform with real-time messaging, stories, and content sharing.", image: null },
-  { title: "Portfolio Builder", category: "Web", tech: ["Next.js", "Prisma", "Tailwind"], desc: "Drag-and-drop portfolio builder with custom templates and SEO optimization.", image: null },
-  { title: "Travel Guide App", category: "App", tech: ["Flutter", "Firebase", "Google Maps"], desc: "Interactive travel companion with offline maps, itinerary planning, and local recommendations.", image: null },
-  { title: "Design System", category: "UI/UX", tech: ["Figma", "Storybook", "React"], desc: "Comprehensive design system with 200+ components, tokens, and documentation.", image: null },
-];
+const allProjects = getAllProjects();
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
