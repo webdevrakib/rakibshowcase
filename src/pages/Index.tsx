@@ -48,6 +48,7 @@ const fadeUp = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
   return (
     <main>
       {/* Hero */}
