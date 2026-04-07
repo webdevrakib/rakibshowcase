@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
-import { getProjectBySlug } from "@/data/projectData";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { getProjectBySlug, getAllProjects } from "@/data/projectData";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Building2, User, Star, CheckCircle2, Target, Lightbulb, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
