@@ -67,8 +67,12 @@ export const serviceData: Record<string, {
       { label: "Push Notifications", basePrice: 200, unit: "setup" },
       { label: "Payment Integration", basePrice: 300, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$1,999", period: "project", features: ["5-8 screens", "iOS or Android", "Basic UI design", "Push notifications", "1 revision round"] },
+      { name: "Premium", price: "$4,999", period: "project", highlighted: true, features: ["10-15 screens", "iOS & Android", "Custom UI/UX design", "Push notifications", "Payment integration", "3 revision rounds"] },
+      { name: "Advanced", price: "$9,999", period: "project", features: ["Unlimited screens", "iOS & Android", "Premium UI/UX", "All integrations", "Admin panel", "3 months support"] },
+    ],
   },
-  "ui-ux-design": {
     icon: Palette,
     title: "UI/UX Design",
     desc: "User-centered interface designs that convert visitors into customers.",
