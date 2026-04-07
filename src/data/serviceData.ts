@@ -154,8 +154,12 @@ export const serviceData: Record<string, {
       { label: "Database Design", basePrice: 300, unit: "project" },
       { label: "Third-party Integration", basePrice: 200, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$799", period: "project", features: ["Up to 5 endpoints", "Basic auth", "Database setup", "API documentation", "1 revision round"] },
+      { name: "Premium", price: "$1,999", period: "project", highlighted: true, features: ["Up to 15 endpoints", "JWT/OAuth auth", "Database design", "Rate limiting", "Full documentation", "Testing suite"] },
+      { name: "Advanced", price: "$4,999", period: "project", features: ["Unlimited endpoints", "Advanced security", "Microservices", "Caching layer", "CI/CD pipeline", "3 months support"] },
+    ],
   },
-  "full-stack-solutions": {
     icon: Code2,
     title: "Full-Stack Solutions",
     desc: "End-to-end development from database design to deployment and maintenance.",
