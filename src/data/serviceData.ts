@@ -161,6 +161,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$4,999", period: "project", features: ["Unlimited endpoints", "Advanced security", "Microservices", "Caching layer", "CI/CD pipeline", "3 months support"] },
     ],
   },
+  "full-stack-solutions": {
     icon: Code2,
     title: "Full-Stack Solutions",
     desc: "End-to-end development from database design to deployment and maintenance.",
