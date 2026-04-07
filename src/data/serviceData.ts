@@ -96,8 +96,12 @@ export const serviceData: Record<string, {
       { label: "Design System", basePrice: 600, unit: "system" },
       { label: "Prototype", basePrice: 250, unit: "prototype" },
     ],
+    packages: [
+      { name: "Basic", price: "$299", period: "project", features: ["3 page designs", "Wireframes", "1 revision round", "Mobile responsive", "Source files"] },
+      { name: "Premium", price: "$799", period: "project", highlighted: true, features: ["Up to 8 page designs", "UX research", "Wireframes & prototypes", "Design system basics", "3 revision rounds"] },
+      { name: "Advanced", price: "$1,999", period: "project", features: ["Unlimited pages", "Full UX research", "Complete design system", "Interactive prototypes", "Brand identity", "Ongoing consultation"] },
+    ],
   },
-  "seo-optimization": {
     icon: Search,
     title: "SEO Optimization",
     desc: "Data-driven SEO strategies that boost your search rankings and organic traffic.",
