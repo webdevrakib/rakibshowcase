@@ -12,6 +12,7 @@ const fadeUp = {
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const project = slug ? getProjectBySlug(slug) : undefined;
 
   if (!project) {
