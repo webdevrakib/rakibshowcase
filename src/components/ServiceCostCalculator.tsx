@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Plus, Minus } from "lucide-react";
+import { Calculator, Plus, Minus, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PricingItem {
@@ -22,6 +22,33 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
   };
 
   const total = pricing.reduce((sum, item, i) => sum + item.basePrice * (quantities[i] || 0), 0);
+
+  const buildBreakdown = () => {
+    return pricing
+      .filter((_, i) => quantities[i] > 0)
+      .map((item, i) => {
+        const originalIndex = pricing.indexOf(item);
+        return `${item.label}: ${quantities[originalIndex]} x $${item.basePrice} = $${item.basePrice * quantities[originalIndex]}`;
+      })
+      .join("\n");
+  };
+
+  const handleWhatsApp = () => {
+    const breakdown = buildBreakdown();
+    const message = encodeURIComponent(
+      `Hi Rakibul! 👋\n\nI've estimated my ${serviceTitle} project:\n\n${breakdown}\n\n💰 Total Budget: $${total.toLocaleString()}\n\nI'd like to discuss this project. Can we get started?`
+    );
+    window.open(`https://wa.me/8801764740380?text=${message}`, "_blank");
+  };
+
+  const handleEmail = () => {
+    const breakdown = buildBreakdown();
+    const subject = encodeURIComponent(`${serviceTitle} Project Estimate - $${total.toLocaleString()}`);
+    const body = encodeURIComponent(
+      `Hi Rakibul,\n\nI've estimated my ${serviceTitle} project:\n\n${breakdown}\n\nTotal Budget: $${total.toLocaleString()}\n\nI'd like to discuss this project and get started.\n\nThank you!`
+    );
+    window.open(`mailto:rakibulhasanbd0@gmail.com?subject=${subject}&body=${body}`, "_self");
+  };
 
   return (
     <motion.div
@@ -76,6 +103,32 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
         <span className="text-sm font-medium text-primary-foreground">Estimated Total</span>
         <span className="text-2xl font-bold text-primary-foreground">${total.toLocaleString()}</span>
       </div>
+
+      {total > 0 && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          className="mt-4 flex flex-col sm:flex-row gap-3"
+        >
+          <Button
+            variant="hero"
+            className="flex-1"
+            onClick={handleWhatsApp}
+          >
+            <MessageCircle className="w-4 h-4 mr-2" />
+            Send via WhatsApp
+          </Button>
+          <Button
+            variant="hero-outline"
+            className="flex-1"
+            onClick={handleEmail}
+          >
+            <Mail className="w-4 h-4 mr-2" />
+            Send via Email
+          </Button>
+        </motion.div>
+      )}
+
       <p className="text-xs text-muted-foreground mt-3 text-center">
         * This is an estimate. Final pricing may vary based on project complexity.
       </p>

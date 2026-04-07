@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
-import { getProjectBySlug } from "@/data/projectData";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { getProjectBySlug, getAllProjects } from "@/data/projectData";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Building2, User, Star, CheckCircle2, Target, Lightbulb, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
@@ -12,6 +12,7 @@ const fadeUp = {
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const project = slug ? getProjectBySlug(slug) : undefined;
 
   if (!project) {
@@ -193,8 +194,48 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Related Projects */}
       <section className="section-padding">
+        <div className="container">
+          <SectionHeading badge="Related" title="Similar" highlight="Projects" description="Explore more projects in the same category." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {getAllProjects()
+              .filter((p) => p.category === project.category && p.slug !== project.slug)
+              .slice(0, 3)
+              .map((p, i) => (
+                <motion.div
+                  key={p.slug}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={i}
+                  className="group rounded-2xl border border-border bg-card overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
+                  onClick={() => navigate(`/portfolio/${p.slug}`)}
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">{p.category}</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{p.title}</h4>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{p.desc}</p>
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {p.tech.slice(0, 3).map((t) => (
+                        <span key={t} className="px-2 py-0.5 rounded-full text-xs font-mono bg-muted text-muted-foreground">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+          </div>
+          {getAllProjects().filter((p) => p.category === project.category && p.slug !== project.slug).length === 0 && (
+            <p className="text-center text-muted-foreground mt-4">No related projects found in this category.</p>
+          )}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-muted/30">
         <div className="container text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">Interested in a Similar Project?</h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">Let's discuss how I can help bring your idea to life.</p>

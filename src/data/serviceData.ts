@@ -10,6 +10,7 @@ export const serviceData: Record<string, {
   reviews: { name: string; role: string; rating: number; text: string }[];
   faqs: { question: string; answer: string }[];
   pricing: { label: string; basePrice: number; unit: string }[];
+  packages: { name: string; price: string; period: string; features: string[]; highlighted?: boolean }[];
 }> = {
   "web-development": {
     icon: Globe,
@@ -36,6 +37,11 @@ export const serviceData: Record<string, {
       { label: "Custom Feature", basePrice: 150, unit: "feature" },
       { label: "API Integration", basePrice: 200, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$499", period: "project", features: ["Single landing page", "Mobile responsive", "Contact form", "Basic SEO", "1 revision round"] },
+      { name: "Premium", price: "$1,499", period: "project", highlighted: true, features: ["Up to 5 pages", "Custom design", "CMS integration", "Advanced SEO", "3 revision rounds", "Performance optimization"] },
+      { name: "Advanced", price: "$3,999", period: "project", features: ["Unlimited pages", "Custom web app", "API integrations", "E-commerce features", "Admin dashboard", "Ongoing support (1 month)"] },
+    ],
   },
   "mobile-apps": {
     icon: Smartphone,
@@ -61,8 +67,12 @@ export const serviceData: Record<string, {
       { label: "Push Notifications", basePrice: 200, unit: "setup" },
       { label: "Payment Integration", basePrice: 300, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$1,999", period: "project", features: ["5-8 screens", "iOS or Android", "Basic UI design", "Push notifications", "1 revision round"] },
+      { name: "Premium", price: "$4,999", period: "project", highlighted: true, features: ["10-15 screens", "iOS & Android", "Custom UI/UX design", "Push notifications", "Payment integration", "3 revision rounds"] },
+      { name: "Advanced", price: "$9,999", period: "project", features: ["Unlimited screens", "iOS & Android", "Premium UI/UX", "All integrations", "Admin panel", "3 months support"] },
+    ],
   },
-  "ui-ux-design": {
     icon: Palette,
     title: "UI/UX Design",
     desc: "User-centered interface designs that convert visitors into customers.",
@@ -86,8 +96,12 @@ export const serviceData: Record<string, {
       { label: "Design System", basePrice: 600, unit: "system" },
       { label: "Prototype", basePrice: 250, unit: "prototype" },
     ],
+    packages: [
+      { name: "Basic", price: "$299", period: "project", features: ["3 page designs", "Wireframes", "1 revision round", "Mobile responsive", "Source files"] },
+      { name: "Premium", price: "$799", period: "project", highlighted: true, features: ["Up to 8 page designs", "UX research", "Wireframes & prototypes", "Design system basics", "3 revision rounds"] },
+      { name: "Advanced", price: "$1,999", period: "project", features: ["Unlimited pages", "Full UX research", "Complete design system", "Interactive prototypes", "Brand identity", "Ongoing consultation"] },
+    ],
   },
-  "seo-optimization": {
     icon: Search,
     title: "SEO Optimization",
     desc: "Data-driven SEO strategies that boost your search rankings and organic traffic.",
@@ -110,6 +124,11 @@ export const serviceData: Record<string, {
       { label: "Monthly SEO Package", basePrice: 400, unit: "month" },
       { label: "Content Strategy", basePrice: 250, unit: "strategy" },
       { label: "Local SEO Setup", basePrice: 200, unit: "setup" },
+    ],
+    packages: [
+      { name: "Basic", price: "$299", period: "month", features: ["SEO audit", "5 keyword targets", "On-page optimization", "Monthly report", "Basic link building"] },
+      { name: "Premium", price: "$599", period: "month", highlighted: true, features: ["Full SEO audit", "15 keyword targets", "On & off-page SEO", "Content strategy", "Weekly reports", "Competitor analysis"] },
+      { name: "Advanced", price: "$999", period: "month", features: ["Everything in Premium", "30+ keyword targets", "Content creation", "Local SEO", "Technical SEO fixes", "Priority support"] },
     ],
   },
   "api-development": {
@@ -136,6 +155,11 @@ export const serviceData: Record<string, {
       { label: "Database Design", basePrice: 300, unit: "project" },
       { label: "Third-party Integration", basePrice: 200, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$799", period: "project", features: ["Up to 5 endpoints", "Basic auth", "Database setup", "API documentation", "1 revision round"] },
+      { name: "Premium", price: "$1,999", period: "project", highlighted: true, features: ["Up to 15 endpoints", "JWT/OAuth auth", "Database design", "Rate limiting", "Full documentation", "Testing suite"] },
+      { name: "Advanced", price: "$4,999", period: "project", features: ["Unlimited endpoints", "Advanced security", "Microservices", "Caching layer", "CI/CD pipeline", "3 months support"] },
+    ],
   },
   "full-stack-solutions": {
     icon: Code2,
@@ -160,6 +184,11 @@ export const serviceData: Record<string, {
       { label: "Additional Feature Module", basePrice: 500, unit: "module" },
       { label: "DevOps & CI/CD Setup", basePrice: 400, unit: "setup" },
       { label: "Monthly Maintenance", basePrice: 300, unit: "month" },
+    ],
+    packages: [
+      { name: "Basic", price: "$2,999", period: "project", features: ["MVP development", "Frontend + backend", "Basic database", "Deployment", "1 month support"] },
+      { name: "Premium", price: "$6,999", period: "project", highlighted: true, features: ["Full-stack app", "Custom UI/UX", "Advanced database", "CI/CD pipeline", "Testing & QA", "3 months support"] },
+      { name: "Advanced", price: "$14,999", period: "project", features: ["Enterprise solution", "Scalable architecture", "Microservices", "DevOps setup", "Security audit", "6 months support"] },
     ],
   },
 };
