@@ -183,5 +183,10 @@ export const serviceData: Record<string, {
       { label: "DevOps & CI/CD Setup", basePrice: 400, unit: "setup" },
       { label: "Monthly Maintenance", basePrice: 300, unit: "month" },
     ],
+    packages: [
+      { name: "Basic", price: "$2,999", period: "project", features: ["MVP development", "Frontend + backend", "Basic database", "Deployment", "1 month support"] },
+      { name: "Premium", price: "$6,999", period: "project", highlighted: true, features: ["Full-stack app", "Custom UI/UX", "Advanced database", "CI/CD pipeline", "Testing & QA", "3 months support"] },
+      { name: "Advanced", price: "$14,999", period: "project", features: ["Enterprise solution", "Scalable architecture", "Microservices", "DevOps setup", "Security audit", "6 months support"] },
+    ],
   },
 };
