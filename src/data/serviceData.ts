@@ -37,6 +37,11 @@ export const serviceData: Record<string, {
       { label: "Custom Feature", basePrice: 150, unit: "feature" },
       { label: "API Integration", basePrice: 200, unit: "integration" },
     ],
+    packages: [
+      { name: "Basic", price: "$499", period: "project", features: ["Single landing page", "Mobile responsive", "Contact form", "Basic SEO", "1 revision round"] },
+      { name: "Premium", price: "$1,499", period: "project", highlighted: true, features: ["Up to 5 pages", "Custom design", "CMS integration", "Advanced SEO", "3 revision rounds", "Performance optimization"] },
+      { name: "Advanced", price: "$3,999", period: "project", features: ["Unlimited pages", "Custom web app", "API integrations", "E-commerce features", "Admin dashboard", "Ongoing support (1 month)"] },
+    ],
   },
   "mobile-apps": {
     icon: Smartphone,
