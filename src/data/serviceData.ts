@@ -73,6 +73,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$9,999", period: "project", features: ["Unlimited screens", "iOS & Android", "Premium UI/UX", "All integrations", "Admin panel", "3 months support"] },
     ],
   },
+  "ui-ux-design": {
     icon: Palette,
     title: "UI/UX Design",
     desc: "User-centered interface designs that convert visitors into customers.",
