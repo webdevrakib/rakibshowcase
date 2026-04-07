@@ -41,6 +41,7 @@ const App = () => (
         </Routes>
         <Footer />
         <WhatsAppButton />
+        <ScrollToTop />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
