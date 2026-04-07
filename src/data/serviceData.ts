@@ -10,6 +10,7 @@ export const serviceData: Record<string, {
   reviews: { name: string; role: string; rating: number; text: string }[];
   faqs: { question: string; answer: string }[];
   pricing: { label: string; basePrice: number; unit: string }[];
+  packages: { name: string; price: string; period: string; features: string[]; highlighted?: boolean }[];
 }> = {
   "web-development": {
     icon: Globe,
