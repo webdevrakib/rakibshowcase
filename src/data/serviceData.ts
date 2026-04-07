@@ -131,6 +131,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$999", period: "month", features: ["Everything in Premium", "30+ keyword targets", "Content creation", "Local SEO", "Technical SEO fixes", "Priority support"] },
     ],
   },
+  "api-development": {
     icon: Server,
     title: "API Development",
     desc: "Robust backend APIs with Node.js, Express, and PostgreSQL for your business logic.",
