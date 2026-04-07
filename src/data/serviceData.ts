@@ -125,8 +125,12 @@ export const serviceData: Record<string, {
       { label: "Content Strategy", basePrice: 250, unit: "strategy" },
       { label: "Local SEO Setup", basePrice: 200, unit: "setup" },
     ],
+    packages: [
+      { name: "Basic", price: "$299", period: "month", features: ["SEO audit", "5 keyword targets", "On-page optimization", "Monthly report", "Basic link building"] },
+      { name: "Premium", price: "$599", period: "month", highlighted: true, features: ["Full SEO audit", "15 keyword targets", "On & off-page SEO", "Content strategy", "Weekly reports", "Competitor analysis"] },
+      { name: "Advanced", price: "$999", period: "month", features: ["Everything in Premium", "30+ keyword targets", "Content creation", "Local SEO", "Technical SEO fixes", "Priority support"] },
+    ],
   },
-  "api-development": {
     icon: Server,
     title: "API Development",
     desc: "Robust backend APIs with Node.js, Express, and PostgreSQL for your business logic.",
