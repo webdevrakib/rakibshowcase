@@ -69,8 +69,16 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* Cost Calculator */}
+      {/* Pricing Packages */}
       <section className="section-padding bg-muted/30">
+        <div className="container">
+          <SectionHeading badge="Pricing" title="Choose Your" highlight="Plan" description={`Select the perfect package for your ${service.title.toLowerCase()} needs.`} />
+          <ServicePricingPackages packages={service.packages} serviceTitle={service.title} />
+        </div>
+      </section>
+
+      {/* Cost Calculator */}
+      <section className="section-padding">
         <div className="container max-w-2xl">
           <ServiceCostCalculator pricing={service.pricing} serviceTitle={service.title} />
         </div>
