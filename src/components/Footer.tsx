@@ -15,10 +15,17 @@ const Footer = () => {
               Professional Web & Mobile App Developer crafting digital experiences that drive business growth.
             </p>
             <div className="flex gap-3 mt-6">
-              {[Github, Linkedin, Twitter].map((Icon, i) => (
+              {[
+                { Icon: Github, href: "https://github.com" },
+                { Icon: Linkedin, href: "https://linkedin.com" },
+                { Icon: Twitter, href: "https://twitter.com" },
+                { Icon: Facebook, href: "https://www.facebook.com/developerrakibulalam" },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
                 >
                   <Icon className="w-4 h-4" />

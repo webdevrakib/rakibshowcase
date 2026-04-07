@@ -103,6 +103,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$1,999", period: "project", features: ["Unlimited pages", "Full UX research", "Complete design system", "Interactive prototypes", "Brand identity", "Ongoing consultation"] },
     ],
   },
+  "seo-optimization": {
     icon: Search,
     title: "SEO Optimization",
     desc: "Data-driven SEO strategies that boost your search rankings and organic traffic.",
