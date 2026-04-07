@@ -73,6 +73,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$9,999", period: "project", features: ["Unlimited screens", "iOS & Android", "Premium UI/UX", "All integrations", "Admin panel", "3 months support"] },
     ],
   },
+  "ui-ux-design": {
     icon: Palette,
     title: "UI/UX Design",
     desc: "User-centered interface designs that convert visitors into customers.",
@@ -102,6 +103,7 @@ export const serviceData: Record<string, {
       { name: "Advanced", price: "$1,999", period: "project", features: ["Unlimited pages", "Full UX research", "Complete design system", "Interactive prototypes", "Brand identity", "Ongoing consultation"] },
     ],
   },
+  "seo-optimization": {
     icon: Search,
     title: "SEO Optimization",
     desc: "Data-driven SEO strategies that boost your search rankings and organic traffic.",
