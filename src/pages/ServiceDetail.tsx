@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCostCalculator from "@/components/ServiceCostCalculator";
+import ServicePricingPackages from "@/components/ServicePricingPackages";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Star, Quote } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
