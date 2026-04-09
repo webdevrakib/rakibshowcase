@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, Coffee, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import LiveText from "@/components/LiveText";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,6 +12,16 @@ const fadeUp = {
 };
 
 const About = () => {
+  const { t } = useLanguage();
+
+  const journeyItems = [
+    { year: "2019", title: t("journey.2019.title"), desc: t("journey.2019.desc") },
+    { year: "2020", title: t("journey.2020.title"), desc: t("journey.2020.desc") },
+    { year: "2021", title: t("journey.2021.title"), desc: t("journey.2021.desc") },
+    { year: "2022", title: t("journey.2022.title"), desc: t("journey.2022.desc") },
+    { year: "2024", title: t("journey.2024.title"), desc: t("journey.2024.desc") },
+  ];
+
   return (
     <main className="pt-20">
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
@@ -17,28 +29,22 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary mb-4">
-                About Me
+                {t("about.badge")}
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Crafting Digital <span className="gradient-text">Experiences</span> That Matter
+                {t("about.title")} <span className="gradient-text"><LiveText text={t("about.highlight")} type="pulse" /></span> {t("about.title_suffix")}
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  I'm Rakibul Alam, a passionate Web & Mobile App Developer with over 5 years of experience building high-performance digital products for startups and businesses worldwide.
-                </p>
-                <p>
-                  My approach combines technical excellence with strategic thinking — I don't just build features, I build solutions that drive measurable business results. Every line of code I write is optimized for performance, accessibility, and user experience.
-                </p>
-                <p>
-                  When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, and sharing knowledge with the developer community.
-                </p>
+                <p>{t("about.p1")}</p>
+                <p>{t("about.p2")}</p>
+                <p>{t("about.p3")}</p>
               </div>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Button variant="hero" asChild>
-                  <Link to="/contact">Let's Work Together <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                  <Link to="/contact">{t("about.work_together")} <ArrowRight className="w-4 h-4 ml-1" /></Link>
                 </Button>
                 <Button variant="hero-outline" asChild>
-                  <a href="#">Download CV</a>
+                  <a href="#">{t("about.download_cv")}</a>
                 </Button>
               </div>
             </motion.div>
@@ -50,10 +56,10 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               {[
-                { icon: Award, label: "5+ Years", sub: "Experience" },
-                { icon: Users, label: "30+", sub: "Happy Clients" },
-                { icon: Coffee, label: "50+", sub: "Projects Done" },
-                { icon: Zap, label: "99%", sub: "Satisfaction" },
+                { icon: Award, label: "5+", sub: t("stat.experience") },
+                { icon: Users, label: "30+", sub: t("stat.clients") },
+                { icon: Coffee, label: "50+", sub: t("stat.projects") },
+                { icon: Zap, label: "99%", sub: t("stat.satisfaction") },
               ].map((item, i) => (
                 <div key={i} className="p-6 rounded-2xl border border-border bg-card text-center">
                   <item.icon className="w-8 h-8 text-primary mx-auto mb-3" />
@@ -69,15 +75,9 @@ const About = () => {
       {/* Journey */}
       <section className="section-padding">
         <div className="container">
-          <SectionHeading badge="Journey" title="My" highlight="Story" description="From curious coder to professional developer — here's how I got here." />
+          <SectionHeading badge={t("about.journey_badge")} title={t("about.my")} highlight={t("about.story")} liveHighlight description={t("about.journey_desc")} />
           <div className="max-w-2xl mx-auto space-y-8">
-            {[
-              { year: "2019", title: "Started Web Development", desc: "Began learning HTML, CSS, and JavaScript. Built my first websites for local businesses." },
-              { year: "2020", title: "First Freelance Clients", desc: "Started freelancing and delivered 10+ projects. Learned React and modern tooling." },
-              { year: "2021", title: "Mobile App Development", desc: "Expanded into React Native and built cross-platform mobile applications." },
-              { year: "2022", title: "Full-Stack Mastery", desc: "Mastered backend technologies. Started working with startups on complex systems." },
-              { year: "2024", title: "50+ Projects Delivered", desc: "Reached a milestone of 50+ successful projects with clients worldwide." },
-            ].map((item, i) => (
+            {journeyItems.map((item, i) => (
               <motion.div
                 key={i}
                 className="flex gap-6"
