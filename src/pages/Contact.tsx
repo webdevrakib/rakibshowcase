@@ -6,11 +6,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import PulseButton from "@/components/PulseButton";
+import LiveText from "@/components/LiveText";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +35,10 @@ const Contact = () => {
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
         <div className="container">
           <SectionHeading
-            badge="Contact"
-            title="Let's Work"
-            highlight="Together"
-            description="Have a project in mind? Let's discuss how I can help bring your vision to life."
+            badge={t("contact.badge")}
+            title={t("contact.title")}
+            highlight={t("contact.highlight")}
+            description={t("contact.desc")}
           />
         </div>
       </section>
@@ -43,10 +47,8 @@ const Contact = () => {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-              <h3 className="text-2xl font-bold text-foreground mb-6">Get In Touch</h3>
-              <p className="text-muted-foreground mb-8">
-                Feel free to reach out via the form or through any of the channels below. I typically respond within 24 hours.
-              </p>
+              <h3 className="text-2xl font-bold text-foreground mb-6">{t("contact.get_in_touch")}</h3>
+              <p className="text-muted-foreground mb-8">{t("contact.reach_out")}</p>
 
               <div className="space-y-6">
                 <a href="mailto:perfactrakib@gmail.com" className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors">
@@ -54,7 +56,7 @@ const Contact = () => {
                     <Mail className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-foreground">Email</p>
+                    <p className="text-sm font-medium text-foreground">{t("contact.email")}</p>
                     <p className="text-sm text-muted-foreground">perfactrakib@gmail.com</p>
                   </div>
                 </a>
@@ -74,8 +76,8 @@ const Contact = () => {
                     <MapPin className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-foreground">Location</p>
-                    <p className="text-sm text-muted-foreground">Bangladesh</p>
+                    <p className="text-sm font-medium text-foreground">{t("contact.location")}</p>
+                    <p className="text-sm text-muted-foreground">{t("contact.bangladesh")}</p>
                   </div>
                 </div>
               </div>
@@ -88,12 +90,12 @@ const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h3 className="text-2xl font-bold text-foreground mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">{t("contact.send_message")}</h3>
               <div className="space-y-5">
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Name</label>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.name")}</label>
                   <Input
-                    placeholder="Your name"
+                    placeholder={t("contact.name.placeholder")}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="h-12"
@@ -101,7 +103,7 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.email")}</label>
                   <Input
                     type="email"
                     placeholder="your@email.com"
@@ -112,19 +114,21 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Message</label>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.message")}</label>
                   <Textarea
-                    placeholder="Tell me about your project..."
+                    placeholder={t("contact.message.placeholder")}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={5}
                     maxLength={1000}
                   />
                 </div>
-                <Button type="submit" variant="hero" className="w-full h-12" disabled={loading}>
-                  {loading ? "Sending..." : "Send Message"}
-                  <Send className="w-4 h-4 ml-1" />
-                </Button>
+                <PulseButton className="w-full">
+                  <Button type="submit" variant="hero" className="w-full h-12" disabled={loading}>
+                    {loading ? t("contact.sending") : t("contact.send")}
+                    <Send className="w-4 h-4 ml-1" />
+                  </Button>
+                </PulseButton>
               </div>
             </motion.form>
           </div>

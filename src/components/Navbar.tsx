@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Portfolio", to: "/portfolio" },
-  { label: "Blog", to: "/blog" },
-  { label: "Contact", to: "/contact" },
-];
+import { Menu, X, Moon, Sun, Languages } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const location = useLocation();
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.home"), to: "/" },
+    { label: t("nav.about"), to: "/about" },
+    { label: t("nav.services"), to: "/services" },
+    { label: t("nav.portfolio"), to: "/portfolio" },
+    { label: t("nav.blog"), to: "/blog" },
+    { label: t("nav.contact"), to: "/contact" },
+  ];
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -31,6 +33,10 @@ const Navbar = () => {
     setIsDark(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
+  };
+
+  const toggleLang = () => {
+    setLang(lang === "en" ? "bn" : "en");
   };
 
   useEffect(() => {
@@ -71,7 +77,15 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Toggle language"
+          >
+            <Languages className="w-4 h-4" />
+            {lang === "en" ? "বাং" : "EN"}
+          </button>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -80,11 +94,18 @@ const Navbar = () => {
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
           <Button variant="hero" size="sm" asChild>
-            <Link to="/contact">Hire Me</Link>
+            <Link to="/contact">{t("nav.hire")}</Link>
           </Button>
         </div>
 
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-1">
+          <button
+            onClick={toggleLang}
+            className="p-2 rounded-lg text-xs font-bold text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Toggle language"
+          >
+            {lang === "en" ? "বাং" : "EN"}
+          </button>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
@@ -119,7 +140,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Button variant="hero" className="mt-2" asChild>
-              <Link to="/contact">Hire Me</Link>
+              <Link to="/contact">{t("nav.hire")}</Link>
             </Button>
           </div>
         </div>

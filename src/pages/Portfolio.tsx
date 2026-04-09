@@ -5,8 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { ExternalLink, Github, Code2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { getAllProjects } from "@/data/projectData";
-
-const categories = ["All", "Web", "App", "UI/UX"];
+import PulseButton from "@/components/PulseButton";
+import LiveText from "@/components/LiveText";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const allProjects = getAllProjects();
 
@@ -16,19 +17,21 @@ const fadeUp = {
 };
 
 const Portfolio = () => {
-  const [active, setActive] = useState("All");
+  const { t } = useLanguage();
+  const categories = [t("portfolio.all"), "Web", "App", "UI/UX"];
+  const [active, setActive] = useState(categories[0]);
   const navigate = useNavigate();
-  const filtered = active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
+  const filtered = active === categories[0] ? allProjects : allProjects.filter((p) => p.category === active);
 
   return (
     <main className="pt-20">
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
         <div className="container">
           <SectionHeading
-            badge="Portfolio"
-            title="My"
-            highlight="Work"
-            description="A curated collection of projects that showcase my expertise across web, mobile, and design."
+            badge={t("portfolio.badge")}
+            title={t("about.my")}
+            highlight={t("services.process.highlight")}
+            description={t("portfolio.page.desc")}
           />
         </div>
       </section>
@@ -82,9 +85,9 @@ const Portfolio = () => {
                   <h3 className="text-lg font-semibold text-foreground mt-3 mb-2">{project.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{project.desc}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded text-xs font-mono bg-muted text-muted-foreground">
-                        {t}
+                    {project.tech.map((techItem) => (
+                      <span key={techItem} className="px-2 py-0.5 rounded text-xs font-mono bg-muted text-muted-foreground">
+                        {techItem}
                       </span>
                     ))}
                   </div>
@@ -99,14 +102,16 @@ const Portfolio = () => {
       <section className="section-padding bg-muted/30">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Like What You See?
+            {t("portfolio.like")}
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-            Let's create something amazing together. I'm always open to new opportunities and exciting projects.
+            {t("portfolio.like.desc")}
           </p>
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/contact">Start a Project <ArrowRight className="w-4 h-4 ml-1" /></Link>
-          </Button>
+          <PulseButton>
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/contact"><LiveText text={t("hero.start")} type="glow" /> <ArrowRight className="w-4 h-4 ml-1" /></Link>
+            </Button>
+          </PulseButton>
         </div>
       </section>
     </main>

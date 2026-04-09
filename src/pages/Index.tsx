@@ -3,46 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Smartphone, Globe, Palette, Search, Server, ChevronRight, Star, Quote } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedText from "@/components/AnimatedText";
+import LiveText from "@/components/LiveText";
+import PulseButton from "@/components/PulseButton";
 import { motion } from "framer-motion";
 import profileImg from "@/assets/rakibul-profile.jpg";
-
-const stats = [
-  { value: "50+", label: "Projects Completed" },
-  { value: "30+", label: "Happy Clients" },
-  { value: "5+", label: "Years Experience" },
-  { value: "99%", label: "Client Satisfaction" },
-];
-
-const services = [
-  { icon: Globe, title: "Web Development", desc: "Custom websites and web apps built with modern frameworks for speed and scalability." },
-  { icon: Smartphone, title: "Mobile Apps", desc: "Cross-platform mobile applications with native performance and sleek UI." },
-  { icon: Palette, title: "UI/UX Design", desc: "User-centered designs that convert visitors into customers." },
-  { icon: Search, title: "SEO Optimization", desc: "Data-driven SEO strategies to boost your online visibility." },
-  { icon: Server, title: "API Development", desc: "Robust RESTful and GraphQL APIs powering your business logic." },
-  { icon: Code2, title: "Full-Stack Solutions", desc: "End-to-end development from database to deployment." },
-];
-
-const projects = [
-  { title: "E-Commerce Platform", slug: "e-commerce-platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
-  { title: "Fitness Tracker App", slug: "fitness-tracker-app", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
-  { title: "SaaS Dashboard", slug: "saas-dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
-  { title: "Restaurant Booking", slug: "restaurant-booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
-];
-
-const testimonials = [
-  { name: "Sarah Chen", role: "CEO, TechStart", text: "Rakibul delivered our platform ahead of schedule. The quality exceeded our expectations and our conversion rates doubled.", rating: 5 },
-  { name: "James Wilson", role: "Founder, AppFlow", text: "Exceptional work on our mobile app. Rakibul's attention to detail and communication made the process seamless.", rating: 5 },
-  { name: "Maria Garcia", role: "Marketing Director", text: "Our website redesign resulted in a 150% increase in leads. Rakibul truly understands conversion-focused design.", rating: 5 },
-];
-
-const skills = [
-  { name: "React / Next.js", level: 95 },
-  { name: "React Native", level: 88 },
-  { name: "TypeScript", level: 92 },
-  { name: "Node.js", level: 90 },
-  { name: "Tailwind CSS", level: 95 },
-  { name: "PostgreSQL / MongoDB", level: 85 },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -56,6 +21,46 @@ const staggerContainer = {
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "50+", label: t("stat.projects") },
+    { value: "30+", label: t("stat.clients") },
+    { value: "5+", label: t("stat.experience") },
+    { value: "99%", label: t("stat.satisfaction") },
+  ];
+
+  const services = [
+    { icon: Globe, title: t("service.web"), desc: t("service.web.desc") },
+    { icon: Smartphone, title: t("service.mobile"), desc: t("service.mobile.desc") },
+    { icon: Palette, title: t("service.uiux"), desc: t("service.uiux.desc") },
+    { icon: Search, title: t("service.seo"), desc: t("service.seo.desc") },
+    { icon: Server, title: t("service.api"), desc: t("service.api.desc") },
+    { icon: Code2, title: t("service.fullstack"), desc: t("service.fullstack.desc") },
+  ];
+
+  const projects = [
+    { title: "E-Commerce Platform", slug: "e-commerce-platform", category: "Web", tech: ["React", "Node.js", "MongoDB"], desc: "A full-featured online store with real-time inventory and payment processing." },
+    { title: "Fitness Tracker App", slug: "fitness-tracker-app", category: "App", tech: ["React Native", "Firebase"], desc: "Cross-platform mobile app with workout tracking and health analytics." },
+    { title: "SaaS Dashboard", slug: "saas-dashboard", category: "Web", tech: ["Next.js", "Tailwind", "PostgreSQL"], desc: "Analytics dashboard with real-time data visualization and reporting." },
+    { title: "Restaurant Booking", slug: "restaurant-booking", category: "UI/UX", tech: ["Figma", "React", "Supabase"], desc: "Beautiful booking system with table management and notifications." },
+  ];
+
+  const testimonials = [
+    { name: "Sarah Chen", role: "CEO, TechStart", text: "Rakibul delivered our platform ahead of schedule. The quality exceeded our expectations and our conversion rates doubled.", rating: 5 },
+    { name: "James Wilson", role: "Founder, AppFlow", text: "Exceptional work on our mobile app. Rakibul's attention to detail and communication made the process seamless.", rating: 5 },
+    { name: "Maria Garcia", role: "Marketing Director", text: "Our website redesign resulted in a 150% increase in leads. Rakibul truly understands conversion-focused design.", rating: 5 },
+  ];
+
+  const skills = [
+    { name: "React / Next.js", level: 95 },
+    { name: "React Native", level: 88 },
+    { name: "TypeScript", level: 92 },
+    { name: "Node.js", level: 90 },
+    { name: "Tailwind CSS", level: 95 },
+    { name: "PostgreSQL / MongoDB", level: 85 },
+  ];
+
   return (
     <main>
       {/* Hero */}
@@ -70,19 +75,19 @@ const Index = () => {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary mb-6">
                   <span className="w-2 h-2 rounded-full gradient-bg animate-pulse" />
-                  Available for Projects
+                  {t("hero.available")}
                 </span>
               </motion.div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
-                <AnimatedText text="Hi, I'm" delay={0.1} />
+                <AnimatedText text={t("hero.hi")} delay={0.1} />
                 <br />
                 <span className="gradient-text">
-                  <AnimatedText text="Rakibul Alam" delay={0.3} />
+                  <AnimatedText text={t("hero.name")} delay={0.3} />
                 </span>
                 <br />
                 <span className="text-muted-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-                  <AnimatedText text="Web & Mobile App Developer" delay={0.55} />
+                  <AnimatedText text={t("hero.role")} delay={0.55} />
                 </span>
               </h1>
 
@@ -92,8 +97,7 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                I build high-performance digital products that help businesses grow. 
-                From concept to deployment, I deliver solutions that convert.
+                {t("hero.desc")}
               </motion.p>
 
               <motion.div
@@ -102,14 +106,16 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
               >
-                <Button variant="hero" size="lg" asChild>
-                  <Link to="/contact">
-                    Start a Project <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </Button>
+                <PulseButton>
+                  <Button variant="hero" size="lg" asChild>
+                    <Link to="/contact">
+                      <LiveText text={t("hero.start")} type="glow" /> <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </Button>
+                </PulseButton>
                 <Button variant="hero-outline" size="lg" asChild>
                   <a href="#portfolio">
-                    View My Work
+                    {t("hero.view_work")}
                   </a>
                 </Button>
               </motion.div>
@@ -137,11 +143,9 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                {/* Decorative rings */}
                 <div className="absolute inset-0 rounded-full gradient-bg opacity-20 animate-pulse" />
                 <div className="absolute -inset-3 rounded-full border-2 border-primary/20 animate-[spin_20s_linear_infinite]" />
                 <div className="absolute -inset-6 rounded-full border border-primary/10 animate-[spin_30s_linear_infinite_reverse]" />
-                {/* Image */}
                 <div className="absolute inset-2 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl">
                   <img
                     src={profileImg}
@@ -149,13 +153,12 @@ const Index = () => {
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                {/* Floating badge */}
                 <motion.div
                   className="absolute -bottom-2 -right-2 px-4 py-2 rounded-xl gradient-bg text-primary-foreground text-sm font-semibold shadow-lg"
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  5+ Years Exp
+                  {t("hero.exp_badge")}
                 </motion.div>
               </div>
             </motion.div>
@@ -167,10 +170,10 @@ const Index = () => {
       <section className="section-padding">
         <div className="container">
           <SectionHeading
-            badge="Services"
-            title="What I"
-            highlight="Offer"
-            description="End-to-end development services designed to help your business succeed in the digital landscape."
+            badge={t("services.badge")}
+            title={t("services.title")}
+            highlight={t("services.highlight")}
+            description={t("services.desc")}
           />
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -192,7 +195,7 @@ const Index = () => {
                 <h3 className="text-lg font-semibold text-foreground mb-2">{service.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
                 <Link to="/services" className="inline-flex items-center gap-1 text-sm text-primary font-medium mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Learn more <ChevronRight className="w-4 h-4" />
+                  {t("services.learn_more")} <ChevronRight className="w-4 h-4" />
                 </Link>
               </motion.div>
             ))}
@@ -204,10 +207,10 @@ const Index = () => {
       <section id="portfolio" className="section-padding bg-muted/30">
         <div className="container">
           <SectionHeading
-            badge="Portfolio"
-            title="Featured"
-            highlight="Projects"
-            description="A selection of my recent work that showcases my skills and expertise."
+            badge={t("portfolio.badge")}
+            title={t("portfolio.title")}
+            highlight={t("portfolio.highlight")}
+            description={t("portfolio.desc")}
           />
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -248,7 +251,7 @@ const Index = () => {
           </motion.div>
           <div className="text-center mt-10">
             <Button variant="hero-outline" asChild>
-              <Link to="/portfolio">View All Projects <ArrowRight className="w-4 h-4 ml-1" /></Link>
+              <Link to="/portfolio">{t("portfolio.view_all")} <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
           </div>
         </div>
@@ -258,10 +261,10 @@ const Index = () => {
       <section className="section-padding">
         <div className="container">
           <SectionHeading
-            badge="Skills"
-            title="My"
-            highlight="Expertise"
-            description="Technologies and tools I use to bring ideas to life."
+            badge={t("skills.badge")}
+            title={t("skills.title")}
+            highlight={t("skills.highlight")}
+            description={t("skills.desc")}
           />
           <div className="max-w-2xl mx-auto grid gap-6">
             {skills.map((skill, i) => (
@@ -295,10 +298,11 @@ const Index = () => {
       <section className="section-padding bg-muted/30">
         <div className="container">
           <SectionHeading
-            badge="Testimonials"
-            title="What Clients"
-            highlight="Say"
-            description="Don't just take my word for it — hear from the people I've worked with."
+            badge={t("testimonials.badge")}
+            title={t("testimonials.title")}
+            highlight={t("testimonials.highlight")}
+            liveHighlight
+            description={t("testimonials.desc")}
           />
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -307,23 +311,23 @@ const Index = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {testimonials.map((t, i) => (
+            {testimonials.map((item, i) => (
               <motion.div
-                key={t.name}
+                key={item.name}
                 className="p-6 rounded-2xl border border-border bg-card hover:border-primary/20 transition-colors duration-300"
                 variants={fadeUp}
                 custom={i}
               >
                 <Quote className="w-8 h-8 text-primary/20 mb-4" />
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6">"{t.text}"</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">"{item.text}"</p>
                 <div className="flex items-center gap-1 mb-3">
-                  {Array.from({ length: t.rating }).map((_, j) => (
+                  {Array.from({ length: item.rating }).map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-primary text-primary" />
                   ))}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                  <p className="text-sm font-semibold text-foreground">{item.name}</p>
+                  <p className="text-xs text-muted-foreground">{item.role}</p>
                 </div>
               </motion.div>
             ))}
@@ -344,18 +348,20 @@ const Index = () => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4">
-                Let's Build Something Amazing
+                {t("cta.title")}
               </h2>
               <p className="text-lg text-primary-foreground/80 max-w-xl mx-auto mb-8">
-                Ready to turn your idea into reality? Let's discuss your project and make it happen.
+                {t("cta.desc")}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link to="/contact">Start a Project <ArrowRight className="w-4 h-4 ml-1" /></Link>
-                </Button>
+                <PulseButton>
+                  <Button size="lg" variant="secondary" asChild>
+                    <Link to="/contact"><LiveText text={t("hero.start")} type="glow" /> <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                  </Button>
+                </PulseButton>
                 <Button size="lg" variant="ghost" className="text-primary-foreground border border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground" asChild>
                   <a href="https://wa.me/8801764740380" target="_blank" rel="noopener noreferrer">
-                    WhatsApp Me
+                    {t("cta.whatsapp")}
                   </a>
                 </Button>
               </div>

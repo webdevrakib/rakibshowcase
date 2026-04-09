@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Facebook } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-card border-t border-border">
       <div className="container section-padding">
@@ -12,7 +15,7 @@ const Footer = () => {
               <span className="text-foreground">.dev</span>
             </Link>
             <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
-              Professional Web & Mobile App Developer crafting digital experiences that drive business growth.
+              {t("footer.desc")}
             </p>
             <div className="flex gap-3 mt-6">
               {[
@@ -35,29 +38,35 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.quick_links")}</h4>
             <div className="flex flex-col gap-3">
-              {["About", "Services", "Portfolio", "Blog", "Contact"].map((link) => (
+              {[
+                { label: t("nav.about"), to: "/about" },
+                { label: t("nav.services"), to: "/services" },
+                { label: t("nav.portfolio"), to: "/portfolio" },
+                { label: t("nav.blog"), to: "/blog" },
+                { label: t("nav.contact"), to: "/contact" },
+              ].map((link) => (
                 <Link
-                  key={link}
-                  to={`/${link.toLowerCase()}`}
+                  key={link.to}
+                  to={link.to}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {link}
+                  {link.label}
                 </Link>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Services</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.services")}</h4>
             <div className="flex flex-col gap-3">
               {[
-                { label: "Web Development", slug: "web-development" },
-                { label: "Mobile Apps", slug: "mobile-apps" },
-                { label: "UI/UX Design", slug: "ui-ux-design" },
-                { label: "SEO Optimization", slug: "seo-optimization" },
-                { label: "API Development", slug: "api-development" },
+                { label: t("service.web"), slug: "web-development" },
+                { label: t("service.mobile"), slug: "mobile-apps" },
+                { label: t("service.uiux"), slug: "ui-ux-design" },
+                { label: t("service.seo"), slug: "seo-optimization" },
+                { label: t("service.api"), slug: "api-development" },
               ].map((s) => (
                 <Link
                   key={s.slug}
@@ -71,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.contact")}</h4>
             <div className="flex flex-col gap-4">
               <a href="mailto:perfactrakib@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
@@ -83,7 +92,7 @@ const Footer = () => {
               </a>
               <span className="flex items-center gap-3 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4" />
-                Bangladesh
+                {t("contact.bangladesh")}
               </span>
             </div>
           </div>
@@ -91,10 +100,10 @@ const Footer = () => {
 
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Rakibul Alam. All rights reserved.
+            © {new Date().getFullYear()} Rakibul Alam. {t("footer.rights")}
           </p>
           <p className="text-sm text-muted-foreground">
-            Built with passion & precision.
+            {t("footer.built")}
           </p>
         </div>
       </div>

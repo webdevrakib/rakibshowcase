@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import { blogPosts } from "@/data/blogData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,15 +11,17 @@ const fadeUp = {
 };
 
 const Blog = () => {
+  const { t } = useLanguage();
+
   return (
     <main className="pt-20">
       <section className="section-padding" style={{ background: "var(--gradient-hero)" }}>
         <div className="container">
           <SectionHeading
-            badge="Blog"
-            title="Insights &"
-            highlight="Articles"
-            description="Thoughts on development, design, and building products that matter."
+            badge={t("blog.badge")}
+            title={t("blog.title")}
+            highlight={t("blog.highlight")}
+            description={t("blog.desc")}
           />
         </div>
       </section>
@@ -53,7 +56,7 @@ const Blog = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
                     <span className="inline-flex items-center gap-1 text-sm text-primary font-medium mt-4">
-                      Read More <ArrowRight className="w-3.5 h-3.5" />
+                      {t("blog.read_more")} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </motion.article>

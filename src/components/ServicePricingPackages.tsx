@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PulseButton from "@/components/PulseButton";
+import LiveText from "@/components/LiveText";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface PricingPackage {
   name: string;
@@ -19,6 +22,7 @@ const ServicePricingPackages = ({
   serviceTitle: string;
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const handleGetStarted = () => {
     if (selected === null) return;
@@ -51,7 +55,7 @@ const ServicePricingPackages = ({
           >
             {pkg.highlighted && (
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-semibold gradient-bg text-primary-foreground">
-                Popular
+                {t("pkg.popular")}
               </span>
             )}
             <div className="text-center mb-5">
@@ -76,7 +80,7 @@ const ServicePricingPackages = ({
                   : "bg-muted text-muted-foreground"
               }`}
             >
-              {selected === i ? "✓ Selected" : "Select Plan"}
+              {selected === i ? t("pkg.selected") : t("pkg.select")}
             </div>
           </motion.div>
         ))}
@@ -88,10 +92,12 @@ const ServicePricingPackages = ({
           animate={{ opacity: 1, y: 0 }}
           className="mt-8 text-center"
         >
-          <Button variant="hero" size="lg" onClick={handleGetStarted}>
-            Get Started with {packages[selected].name}
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </Button>
+          <PulseButton>
+            <Button variant="hero" size="lg" onClick={handleGetStarted}>
+              <LiveText text={`${t("pkg.get_started")} ${packages[selected].name}`} type="glow" />
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </PulseButton>
         </motion.div>
       )}
     </div>
