@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import LiveText from "@/components/LiveText";
 
 interface SectionHeadingProps {
   badge?: string;
@@ -6,9 +7,10 @@ interface SectionHeadingProps {
   highlight?: string;
   description?: string;
   center?: boolean;
+  liveHighlight?: boolean;
 }
 
-const SectionHeading = ({ badge, title, highlight, description, center = true }: SectionHeadingProps) => {
+const SectionHeading = ({ badge, title, highlight, description, center = true, liveHighlight = false }: SectionHeadingProps) => {
   return (
     <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""} mb-12 md:mb-16`}>
       {badge && (
@@ -30,7 +32,13 @@ const SectionHeading = ({ badge, title, highlight, description, center = true }:
         transition={{ duration: 0.5, delay: 0.1 }}
       >
         {title}{" "}
-        {highlight && <span className="gradient-text">{highlight}</span>}
+        {highlight && (
+          liveHighlight ? (
+            <span className="gradient-text"><LiveText text={highlight} type="pulse" /></span>
+          ) : (
+            <span className="gradient-text">{highlight}</span>
+          )
+        )}
       </motion.h2>
       {description && (
         <motion.p

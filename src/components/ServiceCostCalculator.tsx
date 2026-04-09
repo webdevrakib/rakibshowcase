@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calculator, Plus, Minus, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import LiveText from "@/components/LiveText";
+import PulseButton from "@/components/PulseButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PricingItem {
   label: string;
@@ -13,6 +16,7 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
   const [quantities, setQuantities] = useState<Record<number, number>>(
     Object.fromEntries(pricing.map((_, i) => [i, 0]))
   );
+  const { t } = useLanguage();
 
   const updateQty = (index: number, delta: number) => {
     setQuantities((prev) => ({
@@ -26,7 +30,7 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
   const buildBreakdown = () => {
     return pricing
       .filter((_, i) => quantities[i] > 0)
-      .map((item, i) => {
+      .map((item) => {
         const originalIndex = pricing.indexOf(item);
         return `${item.label}: ${quantities[originalIndex]} x $${item.basePrice} = $${item.basePrice * quantities[originalIndex]}`;
       })
@@ -63,8 +67,8 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
           <Calculator className="w-5 h-5 text-primary-foreground" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-foreground">Cost Estimator</h3>
-          <p className="text-sm text-muted-foreground">Estimate your {serviceTitle.toLowerCase()} project cost</p>
+          <h3 className="text-xl font-bold text-foreground">{t("calc.title")}</h3>
+          <p className="text-sm text-muted-foreground">{t("calc.estimate")} {serviceTitle.toLowerCase()} {t("calc.project_cost")}</p>
         </div>
       </div>
 
@@ -76,22 +80,11 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
               <p className="text-xs text-muted-foreground">${item.basePrice} / {item.unit}</p>
             </div>
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 rounded-lg"
-                onClick={() => updateQty(i, -1)}
-                disabled={quantities[i] === 0}
-              >
+              <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg" onClick={() => updateQty(i, -1)} disabled={quantities[i] === 0}>
                 <Minus className="w-3.5 h-3.5" />
               </Button>
               <span className="w-8 text-center text-sm font-semibold text-foreground">{quantities[i]}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 rounded-lg"
-                onClick={() => updateQty(i, 1)}
-              >
+              <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg" onClick={() => updateQty(i, 1)}>
                 <Plus className="w-3.5 h-3.5" />
               </Button>
             </div>
@@ -100,8 +93,16 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
       </div>
 
       <div className="flex items-center justify-between p-4 rounded-xl gradient-bg">
-        <span className="text-sm font-medium text-primary-foreground">Estimated Total</span>
-        <span className="text-2xl font-bold text-primary-foreground">${total.toLocaleString()}</span>
+        <span className="text-sm font-medium text-primary-foreground">{t("calc.total")}</span>
+        <motion.span
+          className="text-2xl font-bold text-primary-foreground"
+          key={total}
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          ${total.toLocaleString()}
+        </motion.span>
       </div>
 
       {total > 0 && (
@@ -110,27 +111,33 @@ const ServiceCostCalculator = ({ pricing, serviceTitle }: { pricing: PricingItem
           animate={{ opacity: 1, height: "auto" }}
           className="mt-4 flex flex-col sm:flex-row gap-3"
         >
-          <Button
-            variant="hero"
-            className="flex-1"
-            onClick={handleWhatsApp}
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            Send via WhatsApp
-          </Button>
-          <Button
-            variant="hero-outline"
-            className="flex-1"
-            onClick={handleEmail}
-          >
-            <Mail className="w-4 h-4 mr-2" />
-            Send via Email
-          </Button>
+          <PulseButton className="flex-1">
+            <Button variant="hero" className="w-full" onClick={handleWhatsApp}>
+              <MessageCircle className="w-4 h-4 mr-2" />
+              <LiveText text={t("calc.whatsapp")} type="glow" />
+            </Button>
+          </PulseButton>
+          <PulseButton className="flex-1">
+            <Button variant="hero-outline" className="w-full" onClick={handleEmail}>
+              <Mail className="w-4 h-4 mr-2" />
+              <LiveText text={t("calc.email")} type="glow" />
+            </Button>
+          </PulseButton>
         </motion.div>
       )}
 
+      {total === 0 && (
+        <motion.p
+          className="text-center text-sm text-primary mt-4 font-medium"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          ↑ {t("calc.title")} — Add items above to calculate
+        </motion.p>
+      )}
+
       <p className="text-xs text-muted-foreground mt-3 text-center">
-        * This is an estimate. Final pricing may vary based on project complexity.
+        {t("calc.note")}
       </p>
     </motion.div>
   );
